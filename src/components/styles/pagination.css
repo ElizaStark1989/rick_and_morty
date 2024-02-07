@@ -1,0 +1,12 @@
+.pagination{
+    display: flex;
+    gap: 25px;
+    margin: 25px;
+    align-items: center;
+}
+.pagination button{
+    background-color: rgb(50, 230, 50);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

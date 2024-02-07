@@ -1,0 +1,35 @@
+.location{
+    background-color: rgb(41, 73, 41) ;
+    padding: 20px;
+    margin: 35px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.location:hover{
+    transform: scale(1.1);
+    box-shadow: -5px -5px 5px black;
+    transition: transform .25s;
+}
+.location_title{
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(62, 216, 62);
+    font-size: xx-large;
+}
+.location_list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.location_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: grey;
+    font-size: x-large;
+}
+.location_item span{
+    color: white;
+    font-weight: 600;
+}
