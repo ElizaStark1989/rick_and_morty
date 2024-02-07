@@ -3,6 +3,8 @@ import './App.css';
 import useFetch from './hooks/useFetch';
 import LocationCard from './components/LocationCard';
 import ResidentCard from './components/ResidentCard';
+import BannerCard from './components/BannerCard';
+import Pagination from './components/Pagination';
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
     const url = `https://rickandmortyapi.com/api/location/${finder}`;
     getLocation(url);
   }, [finder]);
+
+  const [currentPage, setCurrentPage] = useState(1);
   
   //console.log(location);
 
@@ -24,21 +28,33 @@ function App() {
     setFinder(textInput.current.value.trim());
   }
 
+  const quantity = 5;
+  const second = currentPage * quantity;
+  const first = second - quantity;
+  const residentsPart = location && location.residents.slice(first, second);
+  const totalPages = location && Math.floor(location.residents.length / quantity) + 1;
+
   return (
-    <div>
+    
+    <div className='app'>
+      <BannerCard/>
       {
         isLoading ?
           <h2>Loading...</h2>
           :
           <>
             <h1>Rick and Morty</h1>
-            <form onSubmit={handleSubmit}>
+            <form 
+              onSubmit={handleSubmit}
+              className='app_form'
+              >
               <input
+                className='app_text'
                 type='number'
                 ref={textInput}
                 placeholder='Type a number (1 to 126)'
               />
-              <button> Search </button>
+              <button className='app_btn'> Search </button>
             </form>
             {
               hasError || finder === '0'?
@@ -47,14 +63,21 @@ function App() {
                 <>
                   <LocationCard
                     location={location} />
-                  {
-                    location?.residents.map(resident => (
-                      <ResidentCard
-                        key={resident}
-                        url={resident}
-                      />
-                    ))
-                  }
+                  <div className='app_container'>
+                    {
+                      residentsPart.map(resident => (
+                        <ResidentCard
+                          key={resident}
+                          url={resident}
+                        />
+                      ))
+                    }
+                  </div>
+                  <Pagination
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    totalPages={totalPages}
+                  />
                 </>
             }
           </>
