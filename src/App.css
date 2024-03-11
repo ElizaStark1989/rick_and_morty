@@ -57,9 +57,10 @@ h1{
 }
 .app_text{
   text-align: center;
-  width: 150px;
+  width: 300px;
   padding: 5px;
   border-radius: 5px 0 0 5px;
+  font-size: 20px;
 }
 .app_btn{
   background-color: rgb(52, 212, 52);
